@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Script for temperature monitoring.
+
+# Set global vars
+TODAY=$(date +%Y%m%d)
+TIME=$(date +%T)
+
+# Create log files
+NAS_FILE=/path/to/NAS/"temp-check.$TODAY"
+LOCAL_FILE=/path/to/local/"temp-check.$TODAY"
+
+touch $NAS_FILE
+touch $LOCAL_FILE
+
+# Script
+echo $1 | tee -a $NAS_FILE $LOCAL_FILE
+echo $TIME | tee -a $NAS_FILE $LOCAL_FILE
+sensors | tee -a $NAS_FILE $LOCAL_FILE
+sudo hddtemp /dev/sda | tee -a $NAS_FILE $LOCAL_FILE
+echo "#" | tee -a $NAS_FILE $LOCAL_FILE
