@@ -3,4 +3,4 @@
 
 ---
 
-1 bash/ folder for shell scripts
+* bash/ folder for shell scripts
