@@ -1,4 +1,6 @@
-# bash-scripts
-Bash and stuff
+# my-scripts
+### shell, scripts, automation & stuff
 
-1. bash/ folder for shell scripts
+---
+
+1 bash/ folder for shell scripts
