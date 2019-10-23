@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Bootloader script to be included in sudo crontab
+
+# Programs defined to launch at startup are set in sections divided by '***' separators.
+# Output is appended to 'my-bootload-su.(date)' file saved in the cron log folder.
+
+# Set global variables
+TODAY=$(date +%Y%m%d)
+TIME=$(date +%T)
+FILE=/your/path/to/cron/logs/"my-bootload-sudo.$TODAY"
+
+# Create log file
+touch $FILE
+
+
+# 1. LAUNCH POWER MANAGEMENT TOOL
+echo "#" >> $FILE
+
+echo "[START > Power management tool]" >> $FILE
+echo $TIME >> $FILE
+
+sudo tlp start &>> $FILE
+
+echo "END" >> $FILE 
+
+#######################################################
+# DEFINE NEXT LOGIC TO RUN BY CRONTAB BELOW THIS LINE #
+

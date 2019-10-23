@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# The script is intended to populate crontab.
+
+# Programs defined to launch at startup are set in sections divided by '***' separators.
+# Output is appended to 'my-bootload.(date)' file saved in the cron log folder.
+
+# Set global variables
+TODAY=$(date +%Y%m%d)
+TIME=$(date +%T)
+FILE=/your/path/to/cron/logs/"my-bootload.$TODAY"
+
+# Create log file
+touch $FILE
+
+
+
+# 1. RUN FILE SYNC SERVICE.
+
+COUNTER=0
+
+# wait 20s for mount
+while (($COUNTER < 20)); do
+    if mount | grep /media/ > /dev/null; then
+        break
+    else
+        sleep 1
+        COUNTER=$(($COUNTER + 1))
+	continue
+    fi
+done
+
+echo "#" >> $FILE
+   
+# if NAS not mounted then:
+if ! mount | grep /media/ > /dev/null; then
+    echo "No NAS detected. Sync service not launched" >> $FILE
+    echo $TIME >> $FILE
+ 
+# if NAS mounted then:
+else
+    echo "[START > Resilio p2p sync service]" >> $FILE
+    echo $TIME >> $FILE
+
+    rslsync >> $FILE
+
+fi
+
+echo "END" >> $FILE
+
+#######################################################
+# DEFINE NEXT LOGIC TO RUN BY CRONTAB BELOW THIS LINE #
+
