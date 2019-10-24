@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# Script for temperature monitoring.
+# Script to launch temp monitoiring and store output in two log files saved in different locations.
+# The script goes to crontab as > */30 * * * * script 
 
 # Set global vars
 TODAY=$(date +%Y%m%d)
 TIME=$(date +%T)
 
 # Create log files
-NAS_FILE=/path/to/NAS/"temp-check.$TODAY"
-LOCAL_FILE=/path/to/local/"temp-check.$TODAY"
+NAS_FILE=/path/to/NAS/"temp-check.$1.$TODAY.$TIME"
+LOCAL_FILE=/path/to/local/"temp-check.$1.$TODAY.$TIME"
 
 touch $NAS_FILE
 touch $LOCAL_FILE
