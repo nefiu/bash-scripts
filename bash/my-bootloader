@@ -8,7 +8,7 @@
 # Set global variables
 TODAY=$(date +%Y%m%d)
 TIME=$(date +%T)
-FILE=/your/path/to/cron/logs/"my-bootload.$TODAY"
+FILE=/path/to/logs_folder/"my-bootload.$TODAY"
 
 # Create log file
 touch $FILE
@@ -36,7 +36,9 @@ echo "#" >> $FILE
 if ! mount | grep /media/ > /dev/null; then
     echo "No NAS detected. Sync service not launched" >> $FILE
     echo $TIME >> $FILE
- 
+
+    rslsync >> $FILE 
+
 # if NAS mounted then:
 else
     echo "[START > Resilio p2p sync service]" >> $FILE
