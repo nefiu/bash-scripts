@@ -1,4 +1,4 @@
 # Jupyter themes config command
 https://github.com/dunovank/jupyter-themes
 
-jt -t monokai -f anonymous -fs 14 -cellw 60% -ofs 12 -cursc r -T -N -kl
+jt -t monokai -f anonymous -fs 16 -cellw 60% -ofs 14 -cursc r -T -N -kl
