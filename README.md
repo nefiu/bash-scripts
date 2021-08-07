@@ -1,4 +1,4 @@
-# my-scripts
+# utility-scripts
 ### shell, scripts, automation & stuff
 
 ---
